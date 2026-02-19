@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Min-Commerce
 
-## Getting Started
+E-commerce moderno desarrollado con Next.js 14, TypeScript y Tailwind CSS.
 
-First, run the development server:
+## Características
+
+- ✅ TypeScript con tipado estricto
+- ✅ Tailwind CSS para estilos responsivos
+- ✅ App Router de Next.js
+- ✅ Componentes tipados con interfaces
+- ✅ Catálogo de productos con datos mock
+- ✅ Layout con Header y Footer
+- ✅ Cards de producto con indicadores de stock
+- ✅ Formato de precios en soles peruanos (PEN)
+- ✅ Grid responsivo (1/2/3 columnas)
+
+## Estructura del Proyecto
+
+```
+min-commerce/
+├── app/
+│   ├── layout.tsx          # Layout principal con Header + Footer
+│   ├── page.tsx            # Página del catálogo
+│   └── globals.css         # Estilos globales
+├── components/
+│   ├── Header.tsx          # Barra de navegación
+│   ├── Footer.tsx          # Footer del sitio
+│   └── ProductCard.tsx     # Card de producto tipada
+├── data/
+│   └── products.ts         # Array de productos mock
+├── types/
+│   └── product.ts          # Interface Product
+├── lib/
+│   └── utils.ts            # Helper formatPrice()
+└── public/                 # Recursos estáticos
+```
+
+## Instalación
+
+```bash
+npm install
+```
+
+## Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build de Producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Este proyecto está listo para desplegarse en Vercel:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+vercel
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tecnologías
 
-## Deploy on Vercel
+- Next.js 16.1.6
+- React 19
+- TypeScript 5
+- Tailwind CSS 3
+- ESLint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Catálogo de Productos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+El catálogo incluye 8 productos en 3 categorías:
+- Tecnología (4 productos)
+- Ropa (3 productos)
+- Hogar (2 productos)
+
+Cada producto tiene:
+- Nombre y descripción
+- Precio en soles (PEN)
+- Imagen placeholder
+- Categoría
+- Indicador de disponibilidad
+
+## Validación
+
+✅ Sin errores de TypeScript
+✅ Build exitoso
+✅ Diseño responsivo
+✅ Accesibilidad básica
+✅ Código limpio y profesional
