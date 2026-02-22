@@ -37,9 +37,7 @@ export default function Header() {
               )}
             </Link>
 
-            {status === 'loading' ? (
-              <div className="w-24 h-8 bg-gray-700 rounded-lg animate-pulse" />
-            ) : status === 'authenticated' ? (
+            {status === 'authenticated' ? (
               <div className="flex items-center gap-3">
                 {session.user?.image && (
                   <img
