@@ -1,10 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 import { useCart } from '@/context/CartContext';
+import SignInButton from './SignInButton';
+import SignOutButton from './SignOutButton';
 
 export default function Header() {
   const { totalItems } = useCart();
+  const { data: session, status } = useSession();
 
   return (
     <header className="bg-gray-900 text-white shadow-lg">
@@ -18,10 +22,7 @@ export default function Header() {
           </Link>
 
           <div className="flex items-center space-x-6">
-            <Link
-              href="/"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
+            <Link href="/" className="text-gray-300 hover:text-white transition-colors">
               Catálogo
             </Link>
             <Link
@@ -35,6 +36,24 @@ export default function Header() {
                 </span>
               )}
             </Link>
+
+            {status === 'authenticated' ? (
+              <div className="flex items-center gap-3">
+                {session.user?.image && (
+                  <img
+                    src={session.user.image}
+                    alt={session.user.name ?? 'Usuario'}
+                    className="w-8 h-8 rounded-full border-2 border-blue-400"
+                  />
+                )}
+                <span className="text-sm text-gray-300 hidden sm:block">
+                  {session.user?.name}
+                </span>
+                <SignOutButton />
+              </div>
+            ) : (
+              <SignInButton />
+            )}
           </div>
         </div>
       </nav>

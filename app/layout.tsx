@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { CartProvider } from "@/context/CartContext";
+import Providers from "@/components/Providers";
+import { auth } from "@/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,21 +21,23 @@ export const metadata: Metadata = {
   description: "Encuentra los mejores productos en tecnología, ropa y hogar",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="es">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
       >
-        <CartProvider>
+        <Providers session={session}>
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
-        </CartProvider>
+        </Providers>
       </body>
     </html>
   );
