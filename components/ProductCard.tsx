@@ -1,11 +1,16 @@
+'use client';
+
 import { Product } from '@/types/product';
 import { formatPrice } from '@/lib/utils';
+import { useCart } from '@/context/CartContext';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart();
+
   return (
     <div
       className={`bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl ${
@@ -33,16 +38,12 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.inStock && (
             <div className="flex items-center">
               <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
-              <span className="text-xs text-green-600 font-medium">
-                Disponible
-              </span>
+              <span className="text-xs text-green-600 font-medium">Disponible</span>
             </div>
           )}
         </div>
 
-        <h3 className="text-lg font-bold text-gray-800 mb-2">
-          {product.name}
-        </h3>
+        <h3 className="text-lg font-bold text-gray-800 mb-2">{product.name}</h3>
 
         {product.description && (
           <p className="text-sm text-gray-600 mb-3 line-clamp-2">
@@ -50,10 +51,17 @@ export default function ProductCard({ product }: ProductCardProps) {
           </p>
         )}
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-3">
           <span className="text-2xl font-bold text-gray-900">
             {formatPrice(product.price)}
           </span>
+          <button
+            onClick={() => addToCart(product)}
+            disabled={!product.inStock}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            Agregar
+          </button>
         </div>
       </div>
     </div>

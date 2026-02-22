@@ -7,3 +7,5 @@ export interface Product {
   description?: string;
   inStock: boolean;
 }
+
+export type CartItem = Product & { quantity: number };
