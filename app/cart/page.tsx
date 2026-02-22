@@ -1,11 +1,32 @@
 'use client';
 
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/utils';
+import SignInButton from '@/components/SignInButton';
 
 export default function CartPage() {
+  const { data: session, status } = useSession();
   const { cart, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart();
+
+  if (status === 'loading') {
+    return (
+      <div className="container mx-auto px-4 py-16 text-center">
+        <p className="text-gray-500">Cargando...</p>
+      </div>
+    );
+  }
+
+  if (status === 'unauthenticated') {
+    return (
+      <div className="container mx-auto px-4 py-16 text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Mi Carrito</h1>
+        <p className="text-gray-500 mb-8">Debes iniciar sesión para ver tu carrito</p>
+        <SignInButton />
+      </div>
+    );
+  }
 
   if (cart.length === 0) {
     return (
