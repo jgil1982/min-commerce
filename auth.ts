@@ -15,4 +15,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
 
   secret: process.env.AUTH_SECRET,
+
+  callbacks: {
+    session({ session, user }) {
+      if (session.user) {
+        session.user.id = user.id;
+        session.user.role = user.role ?? "USER";
+      }
+      return session;
+    },
+  },
 });

@@ -113,9 +113,12 @@ export default function CartPage() {
               <span>Total</span>
               <span className="text-blue-600">{formatPrice(totalPrice)}</span>
             </div>
-            <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <Link
+              href="/checkout"
+              className="block w-full mt-6 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center"
+            >
               Proceder al checkout
-            </button>
+            </Link>
             <Link
               href="/"
               className="block text-center mt-3 text-gray-500 hover:text-gray-700 text-sm transition-colors"
