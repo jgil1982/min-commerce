@@ -37,6 +37,24 @@ export default function Header() {
               )}
             </Link>
 
+            {status === 'authenticated' && (
+              <Link
+                href="/orders"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Mis órdenes
+              </Link>
+            )}
+
+            {status === 'authenticated' && session.user?.role === 'ADMIN' && (
+              <Link
+                href="/admin"
+                className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
+              >
+                Admin
+              </Link>
+            )}
+
             {status === 'authenticated' ? (
               <div className="flex items-center gap-3">
                 {session.user?.image && (
